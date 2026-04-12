@@ -6,14 +6,14 @@ export default function ContactCTA() {
       <div className="container">
         <div className="contact-box">
           <div>
-            <span className="eyebrow" style={{ marginBottom: '12px' }}>İletişim</span>
-            <h2>Göçmenlik süreciniz için ilk adımı bugün atın 🤝</h2>
+            <span className="eyebrow" style={{ marginBottom: '12px' }}>Contact</span>
+            <h2>Göçmenlik süreciniz için ilk adımı bugün atın.</h2>
             <p>
               Durumunuzu birlikte değerlendirelim, en uygun başvuru yolunu netleştirelim ve sürecinizi daha güçlü bir planla başlatalım.
             </p>
           </div>
 
-          <Link href="/hizmetler" className="btn btn-primary">Hemen İletişime Geç</Link>
+          <Link href="#" className="btn btn-primary">Hemen İletişime Geç</Link>
         </div>
       </div>
     </section>

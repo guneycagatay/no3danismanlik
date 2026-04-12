@@ -56,7 +56,7 @@ export default function Hero() {
             </p>
           </div>
 
-          <Link href="/hizmetler#paketler" className="btn btn-primary" style={{ width: '100%' }}>
+          <Link href="/iletisim" className="btn btn-primary" style={{ width: '100%' }}>
             Randevu Oluştur
           </Link>
         </aside>

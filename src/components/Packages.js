@@ -1,25 +1,60 @@
-'use client';
-
 import Link from 'next/link';
-import { getPackageList } from '@/lib/packageCatalog';
 
 export default function Packages() {
-  const packages = getPackageList();
+  const packages = [
+    {
+      title: 'Ön Değerlendirme',
+      description: 'Mevcut profilinizin Almanya yasalarına uygunluğunun profesyonel analizi.',
+      price: '3.500 TL',
+      note: 'tek seferlik analiz',
+      features: [
+        'Detaylı profil analizi',
+        'Yasal yol haritası çıkarma',
+        'Eksik evrak listesi',
+        'Randevu randevusu'
+      ],
+      for: 'Almanya’ya gitmek isteyen ama nereden başlayacağını bilmeyenler için.',
+      featured: false
+    },
+    {
+      title: 'Evrak & Başvuru',
+      description: 'İş bulmuş veya süreci başlatmış adaylar için tam evrak kontrolü.',
+      price: 'Detaylar için görüşün',
+      note: 'başvuru bazlı destek',
+      features: [
+        'Tüm evrakların kontrolü',
+        'Başvuru formlarının doldurulması',
+        'Dosya hazırlık desteği',
+        'Hata riskini minimize etme'
+      ],
+      for: 'İş bulmuş ama evraklarını kontrol ettirmek isteyenler için.',
+      featured: true,
+      tag: 'Profesyonel Destek'
+    },
+    {
+      title: 'Tam Süreç Yönetimi',
+      description: 'Sıfırdan yerleşime kadar her adımda profesyonel sistem desteği.',
+      price: 'Bireysel Teklif',
+      note: 'kapsamlı danışmanlık',
+      features: [
+        'İşveren bağlantıları',
+        'Vize & Denklik yönetimi',
+        'Almanya yerleşim desteği',
+        '6 Ay anlık destek sistemi'
+      ],
+      for: 'Süreci profesyonel bir ekiple, güvenle ve hızlı ilerletmek isteyenler için.',
+      featured: false
+    }
+  ];
 
   return (
-    <section id="paketler" className="packages-shell">
+    <section id="paketler">
       <div className="container">
-        <div className="packages-intro">
-          <span className="eyebrow">Sunduğumuz Hizmetler</span>
-          <h2>Danışmanlık Paketleri 📦</h2>
+        <div className="section-head">
+          <h2>Danışmanlık Paketleri</h2>
           <p>
-            Süreci Almanya’dan yönetiyoruz. Almanya’daki fırsatlara ulaşmanız için durumunuzu analiz ediyor, sizi doğru işverenlerle buluşturuyoruz.
-          </p>
-          <p>
-            Boş vaatler yerine şeffaf ve sağlam bir süreç yönetimi sunuyoruz. İşverenle devam etmek tamamen sizin kontrolünüzde.
-          </p>
-          <p>
-            Sürecin her adımında yanınızda olarak işleri hızlandırıyor ve yolu birlikte netleştiriyoruz.
+            İhtiyacınız olan destek seviyesine göre farklı çözüm yolları sunuyoruz. 
+            <strong> Ön değerlendirme ücreti sonraki paketlerden mahsup edilir.</strong>
           </p>
         </div>
 
@@ -32,8 +67,8 @@ export default function Packages() {
               <div className="price">{pkg.price}</div>
               <div className="price-note">{pkg.note}</div>
 
-              <div className="who-for">
-                <strong>Bu paket kimler için uygun?</strong>
+              <div style={{ marginBottom: '20px', padding: '12px', background: 'var(--bg)', borderRadius: '12px', fontSize: '13px' }}>
+                <strong style={{ display: 'block', marginBottom: '4px', color: 'var(--primary)' }}>Bu paket kimler için uygun?</strong>
                 {pkg.for}
               </div>
 
@@ -43,180 +78,26 @@ export default function Packages() {
                 ))}
               </ul>
 
-              <Link
-                href={`/satin-al?paket=${pkg.id}`}
-                className={`btn ${pkg.featured ? 'btn-primary' : 'btn-secondary'}`}
-                style={{ width: '100%', minHeight: '54px' }}
-              >
-                Görüşme Al
+              <Link href="/iletisim" className={`btn ${pkg.featured ? 'btn-primary' : 'btn-secondary'}`} style={{ width: '100%' }}>
+                Paketi Seç
               </Link>
             </article>
           ))}
         </div>
 
+        <div style={{ marginTop: '48px', textAlign: 'center' }}>
+          <div className="contact-box" style={{ background: 'var(--primary)', color: '#fff', border: 'none' }}>
+            <div style={{ textAlign: 'left' }}>
+              <h3 style={{ fontSize: '24px', marginBottom: '8px', color: '#fff' }}>Almanya’da iş buldum, evrak kontrolü istiyorum</h3>
+              <p style={{ color: 'rgba(255,255,255,0.8)' }}>Profesyonel analiz ve hatalardan arındırılmış dosya hazırlığı için hemen randevu alın.</p>
+            </div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
+              <span style={{ fontSize: '32px', fontWeight: '800' }}>3.500 TL</span>
+              <Link href="/iletisim" className="btn btn-secondary">Randevu Al</Link>
+            </div>
+          </div>
+        </div>
       </div>
-
-      <style jsx>{`
-        .packages-shell {
-          background:
-            radial-gradient(circle at 0% 0%, rgba(164, 194, 224, 0.24), transparent 40%),
-            radial-gradient(circle at 100% 100%, rgba(186, 207, 231, 0.2), transparent 46%),
-            linear-gradient(180deg, #f7f4ee 0%, #f0ebe1 100%);
-          border-top: 1px solid rgba(31, 47, 61, 0.08);
-        }
-
-        .packages-intro {
-          max-width: 920px;
-          margin: 0 auto 34px;
-          text-align: center;
-        }
-
-        .packages-intro h2 {
-          font-size: clamp(36px, 5vw, 62px);
-          letter-spacing: -0.05em;
-          line-height: 1.02;
-          margin-bottom: 14px;
-          color: #122235;
-        }
-
-        .packages-intro p {
-          font-size: 18px;
-          line-height: 1.6;
-          color: #4f6173;
-          margin: 0 auto 10px;
-          max-width: 820px;
-        }
-
-        .packages-grid {
-          display: grid;
-          grid-template-columns: repeat(3, minmax(0, 1fr));
-          gap: 18px;
-        }
-
-        .package-card {
-          border-radius: 28px;
-          border: 1px solid rgba(31, 47, 61, 0.12);
-          background: rgba(255, 255, 255, 0.74);
-          backdrop-filter: blur(14px);
-          box-shadow: 0 18px 46px rgba(15, 30, 44, 0.12);
-          padding: 28px;
-          min-height: 100%;
-          display: flex;
-          flex-direction: column;
-        }
-
-        .package-card.featured {
-          border-color: rgba(31, 79, 130, 0.3);
-          transform: translateY(-3px);
-          box-shadow: 0 24px 52px rgba(24, 59, 96, 0.16);
-        }
-
-        .package-tag {
-          align-self: flex-start;
-          display: inline-flex;
-          min-height: 30px;
-          align-items: center;
-          border-radius: 999px;
-          padding: 0 12px;
-          background: #e8f1fa;
-          color: #1c4f83;
-          font-size: 12px;
-          font-weight: 700;
-          letter-spacing: 0.06em;
-          text-transform: uppercase;
-          margin-bottom: 14px;
-        }
-
-        .package-card h3 {
-          font-size: 30px;
-          line-height: 1.04;
-          letter-spacing: -0.04em;
-          margin-bottom: 9px;
-          color: #142438;
-        }
-
-        .package-card p {
-          font-size: 16px;
-          line-height: 1.55;
-          color: #55677a;
-          margin-bottom: 16px;
-        }
-
-        .price {
-          font-size: 44px;
-          line-height: 1;
-          letter-spacing: -0.05em;
-          font-weight: 800;
-          margin-bottom: 4px;
-          color: #102338;
-        }
-
-        .price-note {
-          font-size: 14px;
-          color: #667b91;
-          margin-bottom: 14px;
-        }
-
-        .who-for {
-          margin-bottom: 16px;
-          padding: 14px;
-          border-radius: 14px;
-          border: 1px solid rgba(31, 79, 130, 0.14);
-          background: #f8fbff;
-          color: #4d6074;
-          font-size: 14px;
-          line-height: 1.5;
-        }
-
-        .who-for strong {
-          display: block;
-          margin-bottom: 5px;
-          color: #1a4b7d;
-          font-size: 13px;
-          letter-spacing: 0.02em;
-          text-transform: uppercase;
-        }
-
-        .package-features {
-          display: grid;
-          gap: 10px;
-          margin-bottom: 20px;
-          flex: 1;
-        }
-
-        .package-features li {
-          list-style: none;
-          display: flex;
-          align-items: flex-start;
-          gap: 8px;
-          color: #213548;
-          font-size: 15px;
-          line-height: 1.5;
-        }
-
-        .package-features li::before {
-          content: "•";
-          color: #2e69a4;
-          font-weight: 800;
-          margin-top: -1px;
-        }
-
-        @media (max-width: 1080px) {
-          .packages-grid {
-            grid-template-columns: 1fr;
-          }
-        }
-
-        @media (max-width: 760px) {
-          .packages-intro p {
-            font-size: 16px;
-          }
-
-          .package-card h3 {
-            font-size: 28px;
-          }
-        }
-      `}</style>
     </section>
   );
 }

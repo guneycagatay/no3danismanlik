@@ -1,586 +1,304 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
 
-const QUESTIONS = [
-  {
-    id: 'age',
-    title: 'Yaş aralığınız nedir?',
-    helper: 'Bu bilgi sadece uygun başvuru yolunu seçmek için kullanılır.',
-    options: [
-      { label: '18 - 30', points: 3 },
-      { label: '31 - 40', points: 2 },
-      { label: '41 ve üzeri', points: 1 }
-    ]
-  },
-  {
-    id: 'education',
-    title: 'En yüksek eğitim seviyeniz nedir?',
-    helper: 'Diploma seviyesi başvuru türünü etkileyebilir.',
-    options: [
-      { label: 'Lisans / Yüksek Lisans', points: 3 },
-      { label: 'Ön Lisans / Mesleki Eğitim', points: 2 },
-      { label: 'Lise', points: 1 }
-    ]
-  },
-  {
-    id: 'experience',
-    title: 'Mesleğinizde kaç yıl deneyiminiz var?',
-    helper: 'Tecrübe süresi iş eşleşmesi için önemlidir.',
-    options: [
-      { label: '5 yıl ve üzeri', points: 3 },
-      { label: '2 - 4 yıl', points: 2 },
-      { label: '0 - 1 yıl', points: 1 }
-    ]
-  },
-  {
-    id: 'language',
-    title: 'Dil seviyeniz hangi düzeyde?',
-    helper: 'Almanca veya İngilizce seviyesi kabul sürecini kolaylaştırır.',
-    options: [
-      { label: 'Almanca B1+ veya İngilizce C1+', points: 3 },
-      { label: 'Almanca A2 veya İngilizce B2', points: 2 },
-      { label: 'Başlangıç seviyesindeyim', points: 1 }
-    ]
-  },
-  {
-    id: 'readiness',
-    title: 'Belge hazırlığınız hangi noktada?',
-    helper: 'CV, diploma, referans gibi temel belgeler süreci hızlandırır.',
-    options: [
-      { label: 'Belgelerim büyük ölçüde hazır', points: 3 },
-      { label: 'Kısmen hazır, düzenleme gerekiyor', points: 2 },
-      { label: 'Henüz hazırlığa başlamadım', points: 1 }
-    ]
-  },
-  {
-    id: 'planning',
-    title: 'Süreç takibi için düzenli zaman ayırabilir misiniz?',
-    helper: 'Planlı ilerlemek vize ve iş süreçlerinde kritik fark yaratır.',
-    options: [
-      { label: 'Evet, haftalık düzenli takip yaparım', points: 3 },
-      { label: 'Aylık planla takip ederim', points: 2 },
-      { label: 'Şu an net bir planım yok', points: 1 }
-    ]
-  }
-];
-
-const INTRO = 0;
-const START = 1;
-const END = QUESTIONS.length;
-const RESULT = END + 1;
-const MAX_SCORE = QUESTIONS.length * 3;
-
-function getResultContent(percentage) {
-  if (percentage >= 75) {
-    return {
-      title: 'Çok iyi bir başlangıç seviyesindesiniz',
-      text: 'Profiliniz birçok temel kriterde güçlü görünüyor. Doğru başvuru planı ile süreci güvenle başlatabilirsiniz.',
-      tone: 'good'
-    };
-  }
-  if (percentage >= 50) {
-    return {
-      title: 'İyi bir potansiyeliniz var',
-      text: 'Temel yapı güçlü, bazı alanları iyileştirerek başvurunuzu çok daha güçlü hale getirebilirsiniz.',
-      tone: 'mid'
-    };
-  }
-  return {
-    title: 'Ön hazırlıkla daha iyi sonuç alabilirsiniz',
-    text: 'Hemen başlamak yerine kısa bir hazırlık planı yaparsanız başarı şansınız belirgin şekilde artar.',
-    tone: 'low'
-  };
-}
-
 export default function EligibilityTool() {
-  const [step, setStep] = useState(INTRO);
-  const [score, setScore] = useState(0);
+  const [step, setStep] = useState(0); 
   const [answers, setAnswers] = useState({});
+  const [score, setScore] = useState(0);
 
-  const activeQuestion = step >= START && step <= END ? QUESTIONS[step - 1] : null;
-  const progress = step >= START && step <= END ? Math.round((step / END) * 100) : step > END ? 100 : 0;
-  const percentage = Math.round((score / MAX_SCORE) * 100);
-  const result = getResultContent(percentage);
-
-  const summary = useMemo(() => {
-    const labels = [];
-    QUESTIONS.forEach((question) => {
-      const points = answers[question.id];
-      if (points === 3) labels.push(question.title);
-    });
-    return labels;
-  }, [answers]);
-
-  const handleAnswer = (questionId, points) => {
-    setAnswers((prev) => ({ ...prev, [questionId]: points }));
-    setScore((prev) => prev + points);
-    setStep((prev) => prev + 1);
-  };
-
-  const restart = () => {
-    setStep(INTRO);
-    setScore(0);
-    setAnswers({});
-  };
-
-  const goBack = () => {
-    if (step <= START) return;
-    const lastQuestion = QUESTIONS[step - 2];
-    const lastPoints = answers[lastQuestion.id];
-
-    if (typeof lastPoints === 'number') {
-      setScore((prev) => prev - lastPoints);
-      setAnswers((prev) => {
-        const next = { ...prev };
-        delete next[lastQuestion.id];
-        return next;
-      });
+  const questions = [
+    {
+      id: 'age',
+      title: 'Yaşınız kaç?',
+      options: [
+        { label: '18 - 35', points: 2, icon: '🎂' },
+        { label: '35 - 40', points: 1, icon: '⏳' },
+        { label: '40+', points: 0, icon: '🗓️' }
+      ]
+    },
+    {
+      id: 'education',
+      title: 'Eğitim durumunuz nedir?',
+      options: [
+        { label: 'Lisans Mezunu (4+ Yıl)', points: 3, icon: '🎓' },
+        { label: 'Ön Lisans / MYO', points: 2, icon: '📜' },
+        { label: 'Mesleki Eğitimli', points: 1, icon: '🏷️' },
+        { label: 'Diğer', points: 0, icon: '❓' }
+      ]
+    },
+    {
+      id: 'experience',
+      title: 'Alanınızda kaç yıl tecrübeniz var?',
+      options: [
+        { label: '5 Yıl ve Üzeri', points: 3, icon: '💼' },
+        { label: '2 - 5 Yıl', points: 2, icon: '🛠️' },
+        { label: '0 - 2 Yıl', points: 1, icon: '🌱' }
+      ]
+    },
+    {
+      id: 'language',
+      title: 'Yabancı dil seviyeniz nedir?',
+      options: [
+        { label: 'Almanca B1+ / İngilizce C1+', points: 3, icon: '🗣️' },
+        { label: 'Almanca A2 / İngilizce B2', points: 2, icon: '📖' },
+        { label: 'Dil bilgim çok az / Yok', points: 0, icon: '🔇' }
+      ]
+    },
+    {
+      id: 'discipline',
+      title: 'No3 Ciddiyet Taahhüdü',
+      description: '"Disiplinli olmayan ve süreci ciddiye almayan kişilerle çalışmıyoruz." Bu yoğun sürece tam odaklanmaya hazır mısınız?',
+      options: [
+        { label: 'Evet, Hazırım', points: 1, icon: '🛡️' },
+        { label: 'Emin Değilim', points: -5, icon: '🤔' }
+      ]
     }
-    setStep((prev) => prev - 1);
+  ];
+
+  const handleAnswer = (points) => {
+    setScore(score + points);
+    setStep(step + 1);
+  };
+
+  const handleContactSubmit = (e) => {
+    e.preventDefault();
+    setStep(7);
+  };
+
+  const renderStep = () => {
+    if (step === 0) {
+      return (
+        <div className="test-card intro-card">
+          <div className="brand-logo">No3</div>
+          <h2>Almanya Kariyer Analizi</h2>
+          <p>Yüksek standartlarımıza ve Almanya yasalarına uygunluğunuzu ölçen profesyonel teşhis aracına hoş geldiniz.</p>
+          <button onClick={() => setStep(1)} className="start-btn">
+            Süreci Başlat 🚀
+          </button>
+        </div>
+      );
+    }
+
+    if (step <= questions.length) {
+      const q = questions[step - 1];
+      return (
+        <div className="test-card question-card">
+          <div className="progress-bar">
+            <div className="progress-fill" style={{ width: `${(step / questions.length) * 100}%` }}></div>
+          </div>
+          <span className="step-counter">Adım {step} / {questions.length}</span>
+          <h3>{q.title}</h3>
+          {q.description && <div className="q-desc">{q.description}</div>}
+          
+          <div className="cards-grid">
+            {q.options.map((opt, i) => (
+              <button key={i} onClick={() => handleAnswer(opt.points)} className="visual-card">
+                <span className="card-icon">{opt.icon}</span>
+                <span className="card-label">{opt.label}</span>
+                <span className="card-check"></span>
+              </button>
+            ))}
+          </div>
+        </div>
+      );
+    }
+
+    if (step === 6) {
+      return (
+        <div className="test-card contact-card">
+          <h2>Dosyanız Analiz Ediliyor...</h2>
+          <p>Analiz sonucunuzu oluşturmamız ve size özel raporu iletmemiz için bilgilerinizi girin.</p>
+          <form onSubmit={handleContactSubmit} className="premium-form">
+            <div className="input-group">
+              <input type="text" placeholder="Adınız Soyadınız" required />
+            </div>
+            <div className="input-group">
+              <input type="email" placeholder="E-posta Adresiniz" required />
+            </div>
+            <div className="input-group">
+              <input type="tel" placeholder="Telefon Numaranız" required />
+            </div>
+            <button type="submit" className="submit-btn">Karnemi Oluştur</button>
+          </form>
+        </div>
+      );
+    }
+
+    if (step === 7) {
+      const percentage = Math.min(Math.max(Math.round((score / 12) * 100), 0), 100);
+      return (
+        <div className="test-card result-report">
+          <div className="report-header">
+            <div className="report-badge">Özel Profil Raporu</div>
+            <h2>Analiz Sonucunuz: %{percentage} Uygunluk</h2>
+          </div>
+          
+          <div className="report-body">
+            <div className="score-meter">
+              <div className="meter-fill" style={{ width: `${percentage}%` }}></div>
+            </div>
+            
+            {percentage >= 60 ? (
+              <div className="status high">
+                <h4>✅ Profiliniz Çok Güçlü!</h4>
+                <p>Kriterlerimizin büyük bir kısmını karşılıyorsunuz. Almanya yolculuğunuzda en yüksek başarı şansına sahip adaylar arasındasınız.</p>
+              </div>
+            ) : percentage >= 30 ? (
+              <div className="status mid">
+                <h4>⚠️ Profiliniz Geliştirilebilir</h4>
+                <p>Potansiyeliniz var ancak dil veya tecrübe konularında stratejik adımlar atılması gerekiyor. Profesyonel destekle şansınızı artırabiliriz.</p>
+              </div>
+            ) : (
+              <div className="status low">
+                <h4>❌ Henüz Hazır Değilsiniz</h4>
+                <p>No3 Danışmanlık olarak sadece yüksek başarı şansı olan adaylarla çalışıyoruz. Şu anki durumunuz standartlarımızın altında.</p>
+              </div>
+            )}
+            
+            <div className="report-footer">
+              {percentage >= 30 && (
+                <Link href="/iletisim" className="btn-call">Ücretsiz İlk Görüşmeyi Planla</Link>
+              )}
+              <Link href="/" className="btn-back">Ana Sayfaya Dön</Link>
+            </div>
+          </div>
+        </div>
+      );
+    }
   };
 
   return (
-    <section className="tool-shell">
-      <div className="meta-strip" aria-hidden="true">
-        <span>6 Soru</span>
-        <span>2 Dakika</span>
-        <span>Anlaşılır Sonuç</span>
+    <div className="stage-wrapper">
+      <div className="blob-bg">
+        <div className="blob bg-1"></div>
+        <div className="blob bg-2"></div>
       </div>
-
-      <article className="tool-card">
-        {step === INTRO && (
-          <div className="screen">
-            <span className="chip">No3 Uygunluk Testi</span>
-            <h2>Almanya planınız için net bir başlangıç analizi</h2>
-            <p>
-              Sorular açık ve kısa. Sonunda size anlaşılır bir sonuç ve net bir sonraki adım önerisi vereceğiz.
-            </p>
-            <button type="button" className="primary-btn" onClick={() => setStep(START)}>
-              Testi Başlat
-            </button>
-          </div>
-        )}
-
-        {activeQuestion && (
-          <div className="screen">
-            <div className="top-row">
-              <span className="chip">Soru {step} / {END}</span>
-              <button type="button" className="ghost-btn" onClick={goBack}>Geri</button>
-            </div>
-
-            <div className="progress" aria-hidden="true">
-              <div className="progress-value" style={{ width: `${progress}%` }} />
-            </div>
-
-            <h3>{activeQuestion.title}</h3>
-            <p className="helper">{activeQuestion.helper}</p>
-
-            <div className="options">
-              {activeQuestion.options.map((option) => (
-                <button
-                  key={`${activeQuestion.id}-${option.label}`}
-                  type="button"
-                  className="option-btn"
-                  onClick={() => handleAnswer(activeQuestion.id, option.points)}
-                >
-                  <span>{option.label}</span>
-                  <small>{option.points} puan • Seçmek için dokunun</small>
-                </button>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {step === RESULT && (
-          <div className="screen">
-            <span className="chip">Sonuç</span>
-            <h3>Uygunluk Skoru: %{percentage}</h3>
-
-            <div className="score-track" aria-hidden="true">
-              <div className="score-value" style={{ width: `${percentage}%` }} />
-            </div>
-
-            <section className={`result ${result.tone}`}>
-              <h4>{result.title}</h4>
-              <p>{result.text}</p>
-            </section>
-
-            <section className="highlights">
-              <h5>Güçlü Görünen Alanlar</h5>
-              <p>
-                {summary.length > 0
-                  ? summary.slice(0, 3).join(' • ')
-                  : 'Hazırlık alanlarınızı geliştirerek skoru hızla yükseltebilirsiniz.'}
-              </p>
-            </section>
-
-            <div className="actions">
-              <Link href={`/odeme?urun=test-sonucu-raporu&puan=${percentage}`} className="primary-btn link-btn">
-                Test Sonucu İçin Ödeme Adımına Geç
-              </Link>
-              <Link href="/hizmetler#paketler" className="secondary-btn link-btn package-cta-btn">
-                Danışmanlık Paketleri
-              </Link>
-            </div>
-          </div>
-        )}
-      </article>
-
+      <div className="tool-container">
+        {renderStep()}
+      </div>
       <style jsx>{`
-        .tool-shell {
+        .stage-wrapper {
           position: relative;
-          max-width: 900px;
-          margin: 0 auto;
-          font-family: 'SF Pro Display', 'Avenir Next', 'Helvetica Neue', 'Segoe UI', sans-serif;
-        }
-
-        .meta-strip {
-          position: relative;
-          z-index: 1;
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: 10px;
-          margin-bottom: 12px;
-        }
-
-        .meta-strip span {
-          min-height: 42px;
-          border-radius: 14px;
-          border: 1px solid rgba(31, 47, 61, 0.1);
-          background: rgba(255, 255, 255, 0.72);
-          backdrop-filter: blur(8px);
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          font-size: 13px;
-          font-weight: 700;
-          letter-spacing: 0.01em;
-          color: #203243;
-        }
-
-        .tool-card {
-          position: relative;
-          z-index: 1;
-          border-radius: 34px;
-          border: 1px solid rgba(31, 47, 61, 0.1);
-          background:
-            linear-gradient(164deg, rgba(255, 255, 255, 0.96) 0%, rgba(248, 251, 255, 0.88) 80%),
-            rgba(255, 255, 255, 0.9);
-          backdrop-filter: blur(14px);
-          box-shadow: 0 28px 70px rgba(14, 29, 43, 0.14);
-          overflow: hidden;
-        }
-
-        .screen {
-          padding: 44px;
-          animation: fadeIn 0.3s ease;
-        }
-
-        .chip {
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          min-height: 34px;
-          border-radius: 999px;
-          padding: 0 14px;
-          font-size: 12px;
-          font-weight: 700;
-          letter-spacing: 0.08em;
-          text-transform: uppercase;
-          color: #1c4f83;
-          background: #e7eff7;
-          margin-bottom: 12px;
-        }
-
-        h2 {
-          font-size: clamp(34px, 4.2vw, 52px);
-          line-height: 1.02;
-          letter-spacing: -0.05em;
-          margin-bottom: 14px;
-          color: #122132;
-        }
-
-        h3 {
-          font-size: clamp(30px, 3.8vw, 44px);
-          line-height: 1.04;
-          letter-spacing: -0.03em;
-          margin-bottom: 12px;
-          color: #142536;
-        }
-
-        p {
-          color: #4a5b6b;
-          font-size: 18px;
-          line-height: 1.5;
-          margin-bottom: 22px;
-          max-width: 700px;
-        }
-
-        .helper {
-          margin-bottom: 18px;
-          font-size: 16px;
-          color: #58697a;
-        }
-
-        .top-row {
+          min-height: 500px;
           display: flex;
+          justify-content: center;
           align-items: center;
-          justify-content: space-between;
-          gap: 10px;
-          margin-bottom: 6px;
+          padding: 40px 0;
         }
-
-        .progress,
-        .score-track {
+        .blob-bg {
+          position: absolute;
+          inset: 0;
+          overflow: hidden;
+          z-index: 1;
+        }
+        .blob {
+          position: absolute;
+          width: 500px;
+          height: 500px;
+          border-radius: 50%;
+          filter: blur(100px);
+          opacity: 0.1;
+          animation: orbFloat 20s infinite ease-in-out;
+        }
+        .bg-1 { background: var(--primary); top: -200px; left: -100px; }
+        .bg-2 { background: #38bdf8; bottom: -200px; right: -100px; animation-delay: -10s; }
+        
+        .tool-container {
+          position: relative;
+          z-index: 5;
           width: 100%;
-          height: 10px;
-          border-radius: 999px;
-          background: rgba(31, 47, 61, 0.12);
-          overflow: hidden;
-          margin-bottom: 22px;
+          max-width: 760px;
         }
 
-        .progress-value,
-        .score-value {
-          height: 100%;
-          border-radius: inherit;
-          transition: width 0.28s ease;
-          background: linear-gradient(90deg, #205184 0%, #5f97d0 100%);
+        .test-card {
+          background: rgba(255, 255, 255, 0.7);
+          backdrop-filter: blur(40px) saturate(180%);
+          border: 1px solid rgba(255, 255, 255, 0.5);
+          border-radius: 40px;
+          padding: 60px;
+          box-shadow: 0 40px 100px rgba(0, 0, 0, 0.05);
+          text-align: center;
+          animation: cardEntry 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        .options {
-          display: grid;
-          grid-template-columns: repeat(2, minmax(0, 1fr));
-          gap: 14px;
+        .brand-logo {
+          font-weight: 900;
+          font-size: 24px;
+          color: var(--primary);
+          margin-bottom: 24px;
         }
 
-        .option-btn {
-          border: 1px solid rgba(31, 47, 61, 0.14);
-          background: linear-gradient(180deg, #ffffff 0%, #f9fbfe 100%);
-          border-radius: 20px;
-          min-height: 110px;
-          padding: 18px;
-          display: grid;
-          align-content: center;
-          text-align: left;
-          gap: 8px;
-          cursor: pointer;
-          transition: 0.22s ease;
-        }
+        h2 { font-size: 38px; color: var(--text); letter-spacing: -0.05em; font-weight: 800; margin-bottom: 20px; }
+        h3 { font-size: 32px; color: var(--text); letter-spacing: -0.04em; font-weight: 800; margin-bottom: 30px; }
+        p { font-size: 18px; color: var(--muted); line-height: 1.6; max-width: 600px; margin: 0 auto 32px; }
 
-        .option-btn:hover {
-          border-color: rgba(31, 79, 130, 0.52);
-          box-shadow: 0 16px 30px rgba(31, 79, 130, 0.14);
-          transform: translateY(-2px);
-        }
-
-        .option-btn:focus-visible,
-        .primary-btn:focus-visible,
-        .secondary-btn:focus-visible,
-        .ghost-btn:focus-visible {
-          outline: 3px solid rgba(70, 127, 186, 0.34);
-          outline-offset: 2px;
-        }
-
-        .option-btn span {
-          font-weight: 700;
-          font-size: 19px;
-          line-height: 1.24;
-          color: #1a2a3a;
-        }
-
-        .option-btn small {
-          color: #65809d;
-          font-size: 13px;
-          font-weight: 700;
-          letter-spacing: 0.01em;
-        }
-
-        .result {
-          border-radius: 18px;
-          border: 1px solid;
-          padding: 20px;
-          margin-bottom: 14px;
-        }
-
-        .result h4 {
-          font-size: 28px;
-          margin-bottom: 8px;
-          letter-spacing: -0.02em;
-        }
-
-        .result p {
-          margin-bottom: 0;
-          font-size: 17px;
-        }
-
-        .result.good {
-          background: #eef9f2;
-          border-color: #bde5c8;
-          color: #1f6a41;
-        }
-
-        .result.mid {
-          background: #fff8ea;
-          border-color: #efd9a6;
-          color: #855f16;
-        }
-
-        .result.low {
-          background: #fcefee;
-          border-color: #efc3bc;
-          color: #8b3527;
-        }
-
-        .highlights {
-          border-radius: 16px;
-          background: #f7fbff;
-          border: 1px solid rgba(31, 79, 130, 0.16);
-          padding: 18px;
-          margin-bottom: 20px;
-        }
-
-        .highlights h5 {
-          margin-bottom: 8px;
-          font-size: 18px;
-          letter-spacing: -0.01em;
-          color: var(--text);
-        }
-
-        .highlights p {
-          margin-bottom: 0;
-          font-size: 15px;
-          color: #4c6074;
-        }
-
-        .actions {
-          display: flex;
-          gap: 12px;
-          flex-wrap: wrap;
-        }
-
-        .primary-btn,
-        .secondary-btn {
-          min-height: 58px;
-          border-radius: 16px;
-          padding: 0 24px;
-          font-size: 17px;
-          font-weight: 700;
-          cursor: pointer;
-          transition: 0.24s ease;
-          letter-spacing: 0.01em;
-        }
-
-        .primary-btn {
-          border: none;
-          background: linear-gradient(135deg, #1c4f84 0%, #3473b4 100%);
+        .start-btn, .submit-btn, .btn-call {
+          background: var(--primary);
           color: #fff;
-        }
-
-        .primary-btn:hover {
-          box-shadow: 0 16px 28px rgba(31, 79, 130, 0.32);
-          transform: translateY(-1px);
-        }
-
-        .secondary-btn,
-        .ghost-btn {
-          border: 1px solid rgba(31, 47, 61, 0.15);
-          background: #fff;
-          color: var(--muted);
-        }
-
-        .secondary-btn:hover,
-        .ghost-btn:hover {
-          color: var(--text);
-          border-color: rgba(31, 79, 130, 0.3);
-        }
-
-        .ghost-btn {
-          min-height: 40px;
-          padding: 0 14px;
-          border-radius: 12px;
-          font-size: 14px;
+          border: none;
+          padding: 20px 48px;
+          border-radius: 20px;
+          font-size: 18px;
           font-weight: 700;
           cursor: pointer;
+          transition: 0.3s;
+          box-shadow: 0 10px 20px rgba(31, 79, 130, 0.2);
         }
+        .start-btn:hover, .submit-btn:hover, .btn-call:hover { transform: translateY(-4px); box-shadow: 0 15px 30px rgba(31, 79, 130, 0.3); }
 
-        .link-btn {
-          display: inline-flex;
+        .progress-bar { height: 8px; background: rgba(0,0,0,0.05); border-radius: 10px; margin-bottom: 32px; overflow: hidden; }
+        .progress-fill { height: 100%; background: var(--primary); transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+        .step-counter { font-size: 13px; color: var(--primary); font-weight: 800; text-transform: uppercase; letter-spacing: 0.1em; display: block; margin-bottom: 12px; }
+
+        .q-desc { font-size: 15px; background: rgba(31, 79, 130, 0.05); color: var(--primary-dark); padding: 20px; border-radius: 20px; margin-bottom: 40px; font-weight: 600; border-left: 4px solid var(--primary); text-align: left; }
+
+        .cards-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+        .visual-card {
+          background: #fff;
+          border: 1px solid var(--line);
+          padding: 30px 20px;
+          border-radius: 24px;
+          cursor: pointer;
+          transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+          display: flex;
+          flex-direction: column;
           align-items: center;
-          justify-content: center;
-          text-decoration: none;
+          gap: 15px;
+          outline: none;
         }
+        .visual-card:hover { transform: translateY(-8px); border-color: var(--primary); box-shadow: 0 20px 40px rgba(0,0,0,0.05); }
+        .card-icon { font-size: 40px; }
+        .card-label { font-weight: 700; font-size: 17px; color: var(--text); }
 
-        .package-cta-btn {
-          min-height: 62px;
-          padding: 0 26px;
-          font-size: 18px;
-          font-weight: 800;
-          border-width: 2px;
-          color: #11385f;
-          background: linear-gradient(180deg, #eef5ff 0%, #dcecff 100%);
-          box-shadow: 0 14px 30px rgba(35, 90, 149, 0.2);
-        }
+        .premium-form { display: grid; gap: 20px; margin-top: 32px; }
+        .premium-form input { background: #fff; border: 1px solid var(--line); padding: 20px; border-radius: 18px; font-size: 16px; outline: none; transition: 0.3s; }
+        .premium-form input:focus { border-color: var(--primary); box-shadow: 0 0 0 4px rgba(31, 79, 130, 0.1); }
 
-        .package-cta-btn:hover {
-          transform: translateY(-1px);
-          border-color: rgba(31, 79, 130, 0.48);
-          box-shadow: 0 18px 34px rgba(29, 81, 138, 0.28);
-        }
+        .result-report { text-align: left; }
+        .report-badge { display: inline-block; background: var(--soft-blue); color: var(--primary); padding: 8px 16px; border-radius: 999px; font-weight: 800; font-size: 12px; text-transform: uppercase; margin-bottom: 16px; }
+        .score-meter { height: 16px; background: rgba(0,0,0,0.05); border-radius: 10px; margin: 30px 0; overflow: hidden; }
+        .meter-fill { height: 100%; background: linear-gradient(90deg, #38bdf8, var(--primary)); border-radius: inherit; }
+        
+        .status { padding: 30px; border-radius: 24px; margin-bottom: 40px; }
+        .status h4 { font-size: 22px; margin-bottom: 10px; font-weight: 800; }
+        .status.high { background: #f0fdf4; border: 1px solid #bbf7d0; color: #166534; }
+        .status.mid { background: #fffbeb; border: 1px solid #fde68a; color: #92400e; }
+        .status.low { background: #fef2f2; border: 1px solid #fecaca; color: #991b1b; }
 
-        @keyframes fadeIn {
-          from {
-            opacity: 0;
-            transform: translateY(6px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
+        .report-footer { display: flex; gap: 16px; align-items: center; }
+        .btn-back { font-weight: 700; color: var(--muted); text-decoration: none; padding: 20px; }
 
-        @media (max-width: 840px) {
-          .meta-strip {
-            grid-template-columns: 1fr;
-          }
+        @keyframes cardEntry { from { opacity: 0; transform: translateY(20px) scale(0.98); } to { opacity: 1; transform: translateY(0) scale(1); } }
+        @keyframes orbFloat { 0%, 100% { transform: translate(0,0); } 50% { transform: translate(30px, 40px); } }
 
-          .screen {
-            padding: 26px 20px;
-          }
-
-          .options {
-            grid-template-columns: 1fr;
-          }
-
-          h2 {
-            font-size: 36px;
-          }
-
-          h3 {
-            font-size: 32px;
-          }
-
-          p {
-            font-size: 16px;
-          }
-
-          .option-btn {
-            min-height: 98px;
-          }
-
-          .primary-btn,
-          .secondary-btn {
-            width: 100%;
-          }
-
-          .package-cta-btn {
-            min-height: 58px;
-            font-size: 16px;
-          }
+        @media (max-width: 600px) {
+          .cards-grid { grid-template-columns: 1fr; }
+          .test-card { padding: 30px; }
+          .report-footer { flex-direction: column; }
         }
       `}</style>
-    </section>
+    </div>
   );
 }
