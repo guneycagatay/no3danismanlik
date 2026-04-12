@@ -1,14 +1,10 @@
-'use client';
-
 import Link from 'next/link';
-import { useSearchParams } from 'next/navigation';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
-export default function OdemePage() {
-  const searchParams = useSearchParams();
-  const product = searchParams.get('urun') || 'test-sonucu-raporu';
-  const score = searchParams.get('puan');
+export default function OdemePage({ searchParams }) {
+  const product = searchParams?.urun || 'test-sonucu-raporu';
+  const score = searchParams?.puan;
 
   return (
     <>
