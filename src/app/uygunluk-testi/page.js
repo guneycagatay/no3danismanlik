@@ -3,32 +3,31 @@ import Footer from '@/components/Footer';
 import EligibilityTool from '@/components/EligibilityTool';
 
 export const metadata = {
-  title: 'Almanya Uygunluk Testi | No3 Danışmanlık',
-  description: 'Almanya göçmenlik ve kariyer şansınızı 3 dakikada hesaplayın.',
+  title: 'Uygunluk Testi | No3 Danışmanlık',
+  description: 'Almanya süreci için uygunluk seviyenizi sade ve anlaşılır bir test ile görün.'
 };
 
 export default function EligibilityPage() {
   return (
     <>
       <Navbar />
-      <main style={{ background: 'var(--bg)', minHeight: '100vh', paddingTop: '140px', paddingBottom: '100px' }}>
+      <main className="page-main" style={{ background: 'var(--bg)' }}>
         <div className="container">
-          <div style={{ textAlign: 'center', marginBottom: '60px' }}>
-            <h1 style={{ fontSize: 'clamp(32px, 5vw, 54px)', letterSpacing: '-0.04em', fontWeight: 800 }}>
-              Uygunluk Analizi
+          <header style={{ textAlign: 'center', marginBottom: '44px' }}>
+            <span className="eyebrow">No3 Değerlendirme</span>
+            <h1 style={{ fontSize: 'clamp(34px, 5vw, 58px)', letterSpacing: '-0.05em', lineHeight: 1.02, marginBottom: '12px' }}>
+              Uygunluk Testi
             </h1>
-            <p style={{ color: 'var(--muted)', maxWidth: '600px', margin: '16px auto' }}>
-              Almanya yasalarına ve No3 kalite standartlarına göre profilinizin ön değerlendirmesini yapın.
+            <p style={{ color: 'var(--muted)', maxWidth: '730px', margin: '0 auto', fontSize: '17px' }}>
+              Her yaş ve seviyeden kullanıcı için sade bir ön değerlendirme. Soruları cevaplayın, durumunuzu net görün.
             </p>
-          </div>
-          
+          </header>
+
           <EligibilityTool />
 
-          <div style={{ marginTop: '80px', textAlign: 'center' }}>
-            <p style={{ fontSize: '14px', color: 'var(--muted)' }}>
-              *Bu test bir "ön değerlendirme" niteliğindedir ve kesin vize sonucu garanti etmez.
-            </p>
-          </div>
+          <p style={{ textAlign: 'center', marginTop: '40px', color: 'var(--muted)', fontSize: '13px' }}>
+            Bu test ön değerlendirme amaçlıdır, kesin vize sonucu garantisi vermez.
+          </p>
         </div>
       </main>
       <Footer />

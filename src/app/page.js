@@ -1,6 +1,7 @@
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
 import Process from '@/components/Process';
+import HomeEligibility from '@/components/HomeEligibility';
 import WhyNo3 from '@/components/WhyNo3';
 import Packages from '@/components/Packages';
 import FAQ from '@/components/FAQ';
@@ -14,6 +15,7 @@ export default function Home() {
       <main>
         <Hero />
         <Process />
+        <HomeEligibility />
         <WhyNo3 />
         <Packages />
         <FAQ />

@@ -1,47 +1,38 @@
 import Navbar from '@/components/Navbar';
 import FAQ from '@/components/FAQ';
 import Footer from '@/components/Footer';
+import ContactFormCard from '@/components/ContactFormCard';
 
 export default function IletisimPage() {
   return (
     <>
       <Navbar />
-      <main style={{ paddingTop: '60px' }}>
+      <main className="page-main-tight">
         <section>
-          <div className="container" style={{ display: 'grid', gridTemplateColumns: '1.2fr 0.8fr', gap: '80px' }}>
+          <div className="container" style={{ display: 'grid', gridTemplateColumns: '1.1fr 0.9fr', gap: '28px' }}>
             <div>
-              <span className="eyebrow">İletişim & Randevu</span>
-              <h1 style={{ fontSize: 'clamp(40px, 5vw, 64px)', letterSpacing: '-0.05em', lineHeight: '1', marginBottom: '24px' }}>
-                Geleceğinizi Birlikte Planlayalım
+              <span className="eyebrow">İletişim</span>
+              <h1 style={{ fontSize: 'clamp(40px, 5vw, 66px)', letterSpacing: '-0.05em', lineHeight: '1.02', marginBottom: '16px' }}>
+                Sizinle Hemen İletişime Geçelim
               </h1>
-              <p style={{ fontSize: '18px', color: 'var(--muted)', marginBottom: '40px' }}>
-                Almanya yol haritanızı netleştirmek için profesyonel bir ön değerlendirme ile başlayın. Sistemimiz üzerinden uygun olduğunuz saati seçerek randevunuzu oluşturabilirsiniz.
+              <p style={{ fontSize: '18px', color: 'var(--muted)', marginBottom: '24px' }}>
+                Almanya süreciniz için kısa bir ön görüşme planlayalım. Formu doldurun, ekibimiz size hızlıca dönüş yapsın.
               </p>
-              
-              <div className="contact-box" style={{ background: '#fff', border: '1px solid var(--line)', padding: '40px', borderRadius: '32px' }}>
-                <h3 style={{ marginBottom: '24px' }}>Randevu Oluşturma</h3>
-                <p style={{ marginBottom: '32px', color: 'var(--muted)' }}>
-                  Aşağıdaki butona tıklayarak takvimimizden size uygun bir zaman dilimi seçebilirsiniz. Randevu sonrası analiz formunuz size iletilecektir.
-                </p>
-                {/* Placeholder for appointment system */}
-                <div style={{ padding: '60px', background: 'var(--bg)', borderRadius: '16px', textAlign: 'center', border: '2px dashed var(--line)' }}>
-                  <p style={{ fontWeight: '600', color: 'var(--primary)', marginBottom: '16px' }}>Randevu Takvimi Yükleniyor...</p>
-                  <button className="btn btn-primary">Takvimi Yeni Sekmede Aç</button>
-                </div>
-              </div>
+
+              <ContactFormCard />
             </div>
             
             <aside>
-              <div style={{ background: 'var(--bg-2)', padding: '32px', borderRadius: '24px', position: 'sticky', top: '120px' }}>
+              <div style={{ background: 'rgba(255,255,255,0.74)', border: '1px solid rgba(31, 47, 61, 0.1)', boxShadow: '0 16px 34px rgba(15,30,44,0.1)', backdropFilter: 'blur(10px)', padding: '30px', borderRadius: '24px', position: 'sticky', top: '120px' }}>
                 <h4 style={{ marginBottom: '16px' }}>İletişim Bilgileri</h4>
                 <div style={{ display: 'grid', gap: '20px' }}>
                   <div>
                     <strong style={{ display: 'block', fontSize: '13px', color: 'var(--primary)', textTransform: 'uppercase' }}>E-posta</strong>
-                    <span>hello@no3danismanlik.com</span>
+                    <span>info@no3danismanlik.com</span>
                   </div>
                   <div>
-                    <strong style={{ display: 'block', fontSize: '13px', color: 'var(--primary)', textTransform: 'uppercase' }}>Ofis</strong>
-                    <span>Almanya Merkez Şubesi</span>
+                    <strong style={{ display: 'block', fontSize: '13px', color: 'var(--primary)', textTransform: 'uppercase' }}>Lokasyon</strong>
+                    <span>Almanya / Türkiye</span>
                   </div>
                   <div>
                     <strong style={{ display: 'block', fontSize: '13px', color: 'var(--primary)', textTransform: 'uppercase' }}>Çalışma Saatleri</strong>

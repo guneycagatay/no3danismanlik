@@ -1,51 +1,57 @@
-import Link from 'next/link';
-
 export default function Process() {
   const steps = [
     {
-      title: 'Başvuru & Analiz',
-      desc: 'Mevcut profilinizin Almanya yasalarına ve iş piyasasına uygunluğunu analiz ediyoruz.',
-      tag: 'Adım 01'
+      title: 'Vize Sonrası İlk Adımlar',
+      desc: 'Vize çıktığında süreç bitmez, yeni başlar. Almanya’ya ayak bastığınız andan itibaren doğru sıra ile ilerlemeniz için yanınızdayız.',
+      tag: 'Aşama 01'
     },
     {
-      title: 'Yasal Yol Haritası',
-      desc: 'Almanya merkezli ekibimizle size özel, şeffaf ve güvenli bir süreç planı oluşturuyoruz.',
-      tag: 'Adım 02'
+      title: '6 Ay Canlı Destek',
+      desc: 'Banka hesabı, adres kaydı, kira süreci ve resmi işlemler dahil ilk 6 ay boyunca adım adım destek alırsınız.',
+      tag: 'Aşama 02'
     },
     {
-      title: 'Süreç Yönetimi',
-      desc: 'Evrak hazırlığından vizeye, iş bulmadan yerleşime kadar her adımda yanınızdayız.',
-      tag: 'Adım 03'
+      title: 'Yerel Ağ (The Circle)',
+      desc: 'Almanya’daki kullanıcılarımızla aynı sistem içinde ilerler, sizden önce gidenlerin deneyimlerinden doğrudan faydalanırsınız.',
+      tag: 'Aşama 03'
     }
   ];
 
   return (
-    <section className="process-section" style={{ background: '#fff', borderTop: '1px solid var(--line)' }}>
+    <section id="surec" className="process-section" style={{ background: 'linear-gradient(180deg, #ffffff 0%, #f3eee5 100%)', borderTop: '1px solid var(--line)' }}>
       <div className="container">
-        <div className="section-head" style={{ textAlign: 'center', marginBottom: '60px' }}>
-          <span className="eyebrow" style={{ margin: '0 auto' }}>Süreç Nasıl İlerliyor?</span>
-          <h2>3 Adımda Almanya Yolculuğunuz</h2>
+        <div className="section-head" style={{ textAlign: 'center', marginBottom: '38px', gridTemplateColumns: '1fr' }}>
+          <span className="eyebrow" style={{ margin: '0 auto' }}>Süreç 🧭</span>
+          <h2 style={{ maxWidth: '980px', margin: '0 auto', fontSize: 'clamp(34px, 5vw, 62px)' }}>
+            Almanya&apos;da Yanınızdayız: &quot;Hoş Geldin&quot; Değil &quot;Yol Arkadaşlığı&quot;
+          </h2>
           <p style={{ margin: '0 auto' }}>
-            Boş vaatler değil, profesyonel bir sistemle sürecinizi yönetiyoruz.
+            Almanya&apos;ya gelince yalnız değilsin. Bizimle çalıştığınızda, Almanya&apos;ya ayak bastığınız andan itibaren süreçte birlikte ilerleriz.
           </p>
         </div>
 
-        <div className="process-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '40px' }}>
+        <div className="process-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '18px' }}>
           {steps.map((step, index) => (
-            <div key={index} className="process-card" style={{ position: 'relative', padding: '40px', background: 'var(--bg)', borderRadius: '24px', border: '1px solid var(--line)' }}>
-              <span style={{ fontSize: '12px', fontWeight: '800', color: 'var(--primary)', letterSpacing: '0.1em', textTransform: 'uppercase', display: 'block', marginBottom: '16px' }}>{step.tag}</span>
-              <h3 style={{ fontSize: '24px', marginBottom: '12px' }}>{step.title}</h3>
+            <div
+              key={index}
+              className="process-card"
+              style={{
+                position: 'relative',
+                padding: '30px',
+                background: 'rgba(255,255,255,0.74)',
+                borderRadius: '24px',
+                border: '1px solid rgba(31, 47, 61, 0.12)',
+                backdropFilter: 'blur(10px)',
+                boxShadow: '0 16px 36px rgba(15, 30, 44, 0.1)'
+              }}
+            >
+              <span style={{ fontSize: '12px', fontWeight: '800', color: 'var(--primary)', letterSpacing: '0.1em', textTransform: 'uppercase', display: 'block', marginBottom: '14px' }}>{step.tag}</span>
+              <h3 style={{ fontSize: '28px', lineHeight: 1.1, letterSpacing: '-0.03em', marginBottom: '10px' }}>{step.title}</h3>
               <p style={{ color: 'var(--muted)', fontSize: '15px', lineHeight: '1.6' }}>{step.desc}</p>
             </div>
           ))}
         </div>
 
-        <div style={{ marginTop: '60px', textAlign: 'center', background: 'var(--primary)', color: '#fff', padding: '32px', borderRadius: '24px' }}>
-          <p style={{ marginBottom: '16px', fontWeight: '500' }}>
-            "Disiplinli olmayan ve süreci ciddiye almayan kişilerle çalışmıyoruz."
-          </p>
-          <Link href="/uygunluk-testi" className="btn btn-secondary">Ücretsiz Uygunluk Analizi Başlat</Link>
-        </div>
       </div>
     </section>
   );
