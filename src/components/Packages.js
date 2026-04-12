@@ -11,7 +11,7 @@ export default function Packages() {
       <div className="container">
         <div className="packages-intro">
           <span className="eyebrow">Sunduğumuz Hizmetler</span>
-          <h2>Danışmanlık Paketleri 📦</h2>
+          <h2>Danışmanlık Paketleri</h2>
           <p>
             Süreci Almanya’dan yönetiyoruz. Almanya’daki fırsatlara ulaşmanız için durumunuzu analiz ediyor, sizi doğru işverenlerle buluşturuyoruz.
           </p>
