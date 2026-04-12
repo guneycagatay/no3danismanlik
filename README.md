@@ -16,6 +16,31 @@ bun dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+## Shopier Entegrasyonu
+
+Paket butonları Shopier checkout linklerine bağlanır:
+
+- `NEXT_PUBLIC_SHOPIER_URL_ON_DEGERLENDIRME`
+- `NEXT_PUBLIC_SHOPIER_URL_EVRAK_BASVURU`
+- `NEXT_PUBLIC_SHOPIER_URL_TAM_SUREC`
+- (önerilen) `SHOPIER_URL_ON_DEGERLENDIRME`, `SHOPIER_URL_EVRAK_BASVURU`, `SHOPIER_URL_TAM_SUREC`
+
+Paket satın alma akışı:
+
+1. Kullanıcı paket kartından **Görüşme Al** butonuna tıklar (`/satin-al`).
+2. İletişim + tarih/saat bilgisi girilir.
+3. Sunucu size talep e-postası yollar.
+4. Kullanıcı Shopier ödeme ekranına yönlendirilir.
+
+Ödeme bildirimi (webhook) endpoint:
+
+- `POST /api/shopier/webhook`
+
+Shopier webhook ayarlarında bu URL'yi tanımlayın ve `SHOPIER_WEBHOOK_SECRET` değerini eşitleyin.
+
+Webhook başarılı ve imza doğrulaması geçerliyse, `order.created` için SMTP üzerinden bildirim e-postası gönderilir.
+SMTP ayarları için `.env.example` dosyasını referans alın.
+
 You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
