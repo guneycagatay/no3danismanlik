@@ -6,8 +6,20 @@ export async function POST(request) {
   try {
     const data = await request.json();
     
+    // Değişken kontrolü (Vercel Debug için)
+    const requiredVars = ['SMTP_HOST', 'SMTP_USER', 'SMTP_PASS'];
+    const missingVars = requiredVars.filter(v => !process.env[v]);
+    
+    if (missingVars.length > 0) {
+      return Response.json({ 
+        success: false, 
+        error: `Vercel ayarları eksik: ${missingVars.join(', ')} tanımlanmamış.`,
+        details: 'Vercel Dashboard > Settings > Environment Variables kısmını kontrol edin.'
+      }, { status: 500 });
+    }
+    
     // E-posta içeriğini oluştur
-    const subject = `Yeni Başvuru: ${data.fullname} - ${data.occupation || 'Belirtilmedi'}`;
+    const subject = `Yeni Başvuru: ${data.fullname}`;
     
     const html = `
       <div style="font-family: sans-serif; padding: 20px; color: #333; line-height: 1.6;">
@@ -95,7 +107,6 @@ export async function POST(request) {
     return Response.json({ success: true });
   } catch (error) {
     console.error('Lead submission error:', error);
-    // Vercel'de hatayı görebilmemiz için detaylı mesaj döndürüyoruz
     return Response.json({ 
       success: false, 
       error: error.message || 'Bilinmeyen bir hata oluştu',
@@ -103,4 +114,3 @@ export async function POST(request) {
     }, { status: 500 });
   }
 }
-// Redeploy trigger: Tue Apr 14 19:14:26 +03 2026
