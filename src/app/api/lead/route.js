@@ -95,6 +95,11 @@ export async function POST(request) {
     return Response.json({ success: true });
   } catch (error) {
     console.error('Lead submission error:', error);
-    return Response.json({ success: false, error: 'Internal server error' }, { status: 500 });
+    // Vercel'de hatayı görebilmemiz için detaylı mesaj döndürüyoruz
+    return Response.json({ 
+      success: false, 
+      error: error.message || 'Bilinmeyen bir hata oluştu',
+      details: error.code || 'No code'
+    }, { status: 500 });
   }
 }

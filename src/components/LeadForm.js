@@ -54,6 +54,8 @@ export default function LeadForm({ maxWidth }) {
         body: JSON.stringify(formData),
       });
 
+      const result = await response.json();
+
       if (response.ok) {
         setSubmitted(true);
         if (formRef.current) {
@@ -61,7 +63,7 @@ export default function LeadForm({ maxWidth }) {
           window.scrollTo({ top: topOffset, behavior: 'smooth' });
         }
       } else {
-        alert('Bir hata oluştu, lütfen daha sonra tekrar deneyin.');
+        alert(`Hata: ${result.error || 'Bir sorun oluştu'}\nDetay: ${result.details || ''}`);
       }
     } catch (error) {
       console.error('Error submitting form:', error);
