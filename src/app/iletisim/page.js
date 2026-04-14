@@ -14,7 +14,7 @@ export default function IletisimPage() {
       <Navbar />
       <main className="page-main-tight">
         <section>
-          <div className="container" style={{ display: 'grid', gridTemplateColumns: '1.2fr 0.8fr', gap: '40px', alignItems: 'start' }}>
+          <div className="container contact-grid">
             <div>
               <span className="eyebrow">İletişim</span>
               <h1 style={{ fontSize: 'clamp(40px, 5vw, 66px)', letterSpacing: '-0.05em', lineHeight: '1.02', marginBottom: '16px' }}>
@@ -27,7 +27,7 @@ export default function IletisimPage() {
               <LeadForm maxWidth="100%" />
             </div>
             
-            <aside>
+            <aside className="contact-aside">
               <div style={{ background: 'rgba(255,255,255,0.74)', border: '1px solid rgba(31, 47, 61, 0.1)', boxShadow: '0 16px 34px rgba(15,30,44,0.1)', backdropFilter: 'blur(10px)', padding: '30px', borderRadius: '24px', position: 'sticky', top: '120px' }}>
                 <h4 style={{ marginBottom: '16px' }}>İletişim Bilgileri</h4>
                 <div style={{ display: 'grid', gap: '20px' }}>

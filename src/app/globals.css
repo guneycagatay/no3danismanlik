@@ -4,7 +4,7 @@
   --white: #ffffff;
   --text: #1f2f3d;
   --muted: #61717e;
-  --line: rgba(31, 47, 61, 0.10);
+  --line: rgba(31, 47, 61, 0.1);
   --primary: #1f4f82;
   --primary-dark: #173d64;
   --soft-blue: #dde7ef;
@@ -13,9 +13,8 @@
   --radius-md: 18px;
   --radius-sm: 14px;
   --container: 1180px;
-  --space-section: clamp(72px, 8vw, 108px);
-  --space-section-mobile: 56px;
-  --space-stack: clamp(18px, 2.2vw, 28px);
+  --space-section: clamp(48px, 10vw, 108px);
+  --space-stack: clamp(16px, 2vw, 28px);
 }
 
 * {
@@ -49,7 +48,7 @@ img {
 }
 
 .container {
-  width: min(var(--container), calc(100% - 48px));
+  width: min(var(--container), calc(100% - 40px));
   margin: 0 auto;
 }
 
@@ -234,8 +233,8 @@ header {
 }
 
 .hero-copy h1 {
-  font-size: clamp(36px, 5vw, 64px); /* Scaled down */
-  line-height: 1.05;
+  font-size: clamp(32px, 8vw, 64px);
+  line-height: 1.1;
   letter-spacing: -0.04em;
   font-weight: 800;
   margin-bottom: 20px;
@@ -363,8 +362,8 @@ section {
 }
 
 .section-head h2 {
-  font-size: clamp(30px, 4vw, 54px);
-  line-height: 1.02;
+  font-size: clamp(28px, 6vw, 54px);
+  line-height: 1.1;
   letter-spacing: -0.05em;
   font-weight: 700;
 }
@@ -714,6 +713,16 @@ section {
   .nav-links {
     gap: 18px;
     font-size: 14px;
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .contact-aside {
+    position: static;
   }
 }
 
