@@ -12,11 +12,12 @@ export async function POST(request) {
     const requiredVars = ['SMTP_HOST', 'SMTP_USER', 'SMTP_PASS'];
     const missingVars = requiredVars.filter(v => !process.env[v]);
     
+    // Eğer değişkenler eksikse detaylı rapor ver
     if (missingVars.length > 0) {
       return Response.json({ 
         success: false, 
         error: `Vercel bu değişkenleri bulamıyor: ${missingVars.join(', ')}`,
-        details: `Vercel'de mevcut olan ilgili anahtarlar: ${allEnvKeys.join(', ') || 'HİÇBİRİ BULUNAMADI'}`,
+        details: `Vercel'de mevcut olan ilgili anahtarlar: ${allEnvKeys.join(', ') || 'HIÇBIRI BULUNAMADI'}`,
         suggestion: 'Lütfen Vercel panelinde isimlerin sonunda boşluk kalıp kalmadığını ve "Production" kutusunun işaretli olduğunu kontrol edin.'
       }, { status: 500 });
     }
@@ -28,16 +29,30 @@ export async function POST(request) {
       <div style="font-family: sans-serif; padding: 20px; color: #333; line-height: 1.6;">
         <h2 style="color: #0070f3; border-bottom: 2px solid #0070f3; padding-bottom: 10px;">Yeni Başvuru Detayları</h2>
         <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
-          <tr style="background: #f9f9f9;"><td style="padding: 10px; border: 1px solid #ddd; font-weight: bold; width: 200px;">Ad Soyad:</td><td style="padding: 10px; border: 1px solid #ddd;">${data.fullname}</td></tr>
-          <tr><td style="padding: 10px; border: 1px solid #ddd; font-weight: bold;">Telefon:</td><td style="padding: 10px; border: 1px solid #ddd;">${data.phone}</td></tr>
-          <tr style="background: #f9f9f9;"><td style="padding: 10px; border: 1px solid #ddd; font-weight: bold;">E-posta:</td><td style="padding: 10px; border: 1px solid #ddd;">${data.email}</td></tr>
-          <tr><td style="padding: 10px; border: 1px solid #ddd; font-weight: bold;">Gitme Sebebi:</td><td style="padding: 10px; border: 1px solid #ddd;">${data.reason}</td></tr>
-          <tr style="background: #f9f9f9;"><td style="padding: 10px; border: 1px solid #ddd; font-weight: bold;">Sektör:</td><td style="padding: 10px; border: 1px solid #ddd;">${data.sector}</td></tr>
-          <tr><td style="padding: 10px; border: 1px solid #ddd; font-weight: bold;">Uzmanlık/Unvan:</td><td style="padding: 10px; border: 1px solid #ddd;">${data.occupation}</td></tr>
-          <tr style="background: #f9f9f9;"><td style="padding: 10px; border: 1px solid #ddd; font-weight: bold;">Bütçe:</td><td style="padding: 10px; border: 1px solid #ddd;">${data.budget}</td></tr>
+          <tr style="background: #f9f9f9;">
+            <td style="padding: 10px; border: 1px solid #ddd; font-weight: bold; width: 200px;">Ad Soyad:</td>
+            <td style="padding: 10px; border: 1px solid #ddd;">${data.fullname}</td>
+          </tr>
+          <tr>
+            <td style="padding: 10px; border: 1px solid #ddd; font-weight: bold;">Telefon:</td>
+            <td style="padding: 10px; border: 1px solid #ddd;">${data.phone}</td>
+          </tr>
+          <tr style="background: #f9f9f9;">
+            <td style="padding: 10px; border: 1px solid #ddd; font-weight: bold;">E-posta:</td>
+            <td style="padding: 10px; border: 1px solid #ddd;">${data.email}</td>
+          </tr>
+          <tr>
+            <td style="padding: 10px; border: 1px solid #ddd; font-weight: bold;">Sektör:</td>
+            <td style="padding: 10px; border: 1px solid #ddd;">${data.sector || 'Belirtilmedi'}</td>
+          </tr>
+          <tr style="background: #f9f9f9;">
+            <td style="padding: 10px; border: 1px solid #ddd; font-weight: bold;">Bütçe:</td>
+            <td style="padding: 10px; border: 1px solid #ddd;">${data.budget || 'Belirtilmedi'}</td>
+          </tr>
         </table>
         <div style="margin-top: 30px; padding: 15px; background: #fff8e1; border-radius: 8px; border: 1px solid #ffe082;">
-          <h3 style="margin-top: 0;">Notlar:</h3><p>${data.goals || 'Not bırakılmadı.'}</p>
+          <h3 style="margin-top: 0;">Notlar:</h3>
+          <p>${data.goals || 'Not bırakılmadı.'}</p>
         </div>
       </div>
     `;
