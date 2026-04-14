@@ -5,9 +5,9 @@
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border: 1px solid rgba(255, 255, 255, 0.7);
-    border-radius: 18px;
-    padding: 40px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.04);
+    border-radius: var(--radius-lg);
+    padding: var(--space-md);
+    box-shadow: var(--shadow);
     position: relative;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     margin: 0 auto;

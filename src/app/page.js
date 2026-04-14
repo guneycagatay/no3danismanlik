@@ -24,9 +24,9 @@ export default function Home() {
         <HomeEligibility />
         <WhyNo3 />
         <Packages />
-        <section id="basvuru" style={{ padding: '100px 0', background: 'var(--bg-soft)' }}>
+        <section id="basvuru" style={{ padding: 'var(--space-section) 0', background: 'var(--bg-2)' }}>
           <div className="container">
-            <div style={{ textAlign: 'center', marginBottom: '60px' }}>
+            <div style={{ textAlign: 'center', marginBottom: 'var(--space-md)' }}>
               <span className="eyebrow">Hemen Başlayın</span>
               <h2 style={{ fontSize: 'clamp(32px, 4vw, 52px)', letterSpacing: '-0.04em' }}>Ücretsiz Ön Değerlendirme Formu</h2>
             </div>

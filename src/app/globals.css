@@ -13,7 +13,13 @@
   --radius-md: 18px;
   --radius-sm: 14px;
   --container: 1180px;
-  --space-section: clamp(48px, 10vw, 108px);
+  
+  /* Global Spacing Scale */
+  --space-xs: 12px;
+  --space-sm: 24px;
+  --space-md: 48px;
+  --space-lg: clamp(72px, 10vw, 120px);
+  --space-section: var(--space-lg);
   --space-stack: clamp(16px, 2vw, 28px);
 }
 
@@ -384,14 +390,14 @@ section {
 .services-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 20px;
+  gap: var(--space-sm);
 }
 
 .service-card {
   border: 1px solid var(--line);
   background: #fff;
   border-radius: var(--radius-md);
-  padding: 28px;
+  padding: var(--space-sm);
 }
 
 .service-number {
@@ -404,13 +410,13 @@ section {
   background: var(--bg);
   color: var(--primary);
   font-weight: 700;
-  margin-bottom: 18px;
+  margin-bottom: var(--space-xs);
 }
 
 .service-card h3 {
   font-size: 24px;
   letter-spacing: -0.03em;
-  margin-bottom: 10px;
+  margin-bottom: var(--space-xs);
 }
 
 .service-card p {
@@ -422,14 +428,14 @@ section {
 .packages-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 20px;
+  gap: var(--space-sm);
 }
 
 .package-card {
   background: #fff;
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
-  padding: 30px;
+  padding: var(--space-sm);
   display: flex;
   flex-direction: column;
   min-height: 100%;
@@ -443,7 +449,7 @@ section {
 .package-tag {
   display: inline-flex;
   align-self: flex-start;
-  margin-bottom: 16px;
+  margin-bottom: var(--space-xs);
   font-size: 12px;
   font-weight: 700;
   color: var(--primary-dark);
@@ -455,13 +461,13 @@ section {
 .package-card h3 {
   font-size: 28px;
   letter-spacing: -0.04em;
-  margin-bottom: 10px;
+  margin-bottom: var(--space-xs);
 }
 
 .package-card p {
   color: var(--muted);
   font-size: 16px;
-  margin-bottom: 18px;
+  margin-bottom: var(--space-sm);
   line-height: 1.55;
 }
 
@@ -476,13 +482,13 @@ section {
 .price-note {
   color: var(--muted);
   font-size: 14px;
-  margin-bottom: 20px;
+  margin-bottom: var(--space-sm);
 }
 
 .package-features {
   display: grid;
   gap: 10px;
-  margin-bottom: 26px;
+  margin-bottom: var(--space-sm);
   flex: 1;
 }
 
@@ -510,14 +516,14 @@ section {
 .faq-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 20px;
+  gap: var(--space-sm);
 }
 
 .faq-item {
   border: 1px solid var(--line);
   background: #fff;
   border-radius: var(--radius-md);
-  padding: 26px;
+  padding: var(--space-sm);
 }
 
 .faq-item h3 {
