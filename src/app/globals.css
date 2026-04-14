@@ -14,13 +14,13 @@
   --radius-sm: 14px;
   --container: 1180px;
   
-  /* Global Spacing Scale */
+  /* Global Spacing Scale - Mobile Optimized */
   --space-xs: 12px;
-  --space-sm: 24px;
-  --space-md: 48px;
-  --space-lg: clamp(72px, 10vw, 120px);
+  --space-sm: clamp(16px, 3vw, 24px);
+  --space-md: clamp(24px, 5vw, 48px);
+  --space-lg: clamp(40px, 10vw, 120px);
   --space-section: var(--space-lg);
-  --space-stack: clamp(16px, 2vw, 28px);
+  --space-stack: clamp(12px, 2vw, 28px);
 }
 
 * {
@@ -60,13 +60,13 @@ img {
 
 .page-main {
   min-height: 100vh;
-  padding-top: clamp(96px, 10vw, 132px);
-  padding-bottom: clamp(58px, 7vw, 96px);
+  padding-top: clamp(80px, 10vw, 132px);
+  padding-bottom: clamp(40px, 7vw, 96px);
 }
 
 .page-main-tight {
-  padding-top: clamp(74px, 8vw, 98px);
-  padding-bottom: clamp(28px, 5vw, 56px);
+  padding-top: clamp(60px, 8vw, 98px);
+  padding-bottom: clamp(24px, 5vw, 56px);
 }
 
 .btn {
