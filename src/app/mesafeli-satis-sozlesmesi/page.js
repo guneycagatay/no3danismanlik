@@ -2,7 +2,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
 export const metadata = {
-  title: 'Hizmet Sözleşmesi | No3 Danışmanlık',
+  title: 'Mesafeli Satış ve Hizmet Sözleşmesi | No3 Danışmanlık',
   description: 'No3 Danışmanlık dijital rehberlik hizmet sözleşmesi metni.'
 };
 

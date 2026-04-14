@@ -3,6 +3,11 @@ import WhyNo3 from '@/components/WhyNo3';
 import ContactCTA from '@/components/ContactCTA';
 import Footer from '@/components/Footer';
 
+export const metadata = {
+  title: 'Neden No3 Danışmanlık? Avantajlar ve Sistem | No3 Danışmanlık',
+  description: 'No3 Danışmanlık farkını keşfedin: düşük maliyetli sistem yaklaşımı, canlı destek, iş fırsatları ve adım adım Almanya süreci.'
+};
+
 export default function WhyNo3Page() {
   return (
     <>
@@ -24,7 +29,7 @@ export default function WhyNo3Page() {
         <section style={{ background: 'var(--white)' }}>
           <div className="container" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '60px', alignItems: 'center' }}>
             <div>
-              <h2 style={{ fontSize: '36px', marginBottom: '20px' }}>Almanya'dan Yönetilen Süreç</h2>
+              <h2 style={{ fontSize: '36px', marginBottom: '20px' }}>Almanya&apos;dan Yönetilen Süreç</h2>
               <p style={{ color: 'var(--muted)', marginBottom: '20px' }}>
                 Almanya’daki fırsatlara ulaşmanız için durumunuzu analiz ediyor, sizi doğru işverenlerle buluşturuyoruz. Boş vaatler yerine, şeffaf ve sağlam bir süreç yönetimi sunuyoruz.
               </p>

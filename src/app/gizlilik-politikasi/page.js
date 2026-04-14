@@ -2,7 +2,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
 export const metadata = {
-  title: 'Gizlilik Politikası | No3 Danışmanlık',
+  title: 'Gizlilik Politikası ve Veri Koruma | No3 Danışmanlık',
   description: 'No3 Danışmanlık gizlilik politikası metni.'
 };
 

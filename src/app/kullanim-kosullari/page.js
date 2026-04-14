@@ -2,7 +2,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
 export const metadata = {
-  title: 'Kullanım Koşulları | No3 Danışmanlık',
+  title: 'Kullanım Koşulları ve Site Şartları | No3 Danışmanlık',
   description: 'No3 Danışmanlık kullanım koşulları.'
 };
 

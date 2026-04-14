@@ -3,7 +3,7 @@ import Footer from '@/components/Footer';
 import EligibilityTool from '@/components/EligibilityTool';
 
 export const metadata = {
-  title: 'Uygunluk Testi | No3 Danışmanlık',
+  title: 'Ücretsiz Almanya Uygunluk Testi | No3 Danışmanlık',
   description: 'Almanya süreci için uygunluk seviyenizi sade ve anlaşılır bir test ile görün.'
 };
 

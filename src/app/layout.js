@@ -1,7 +1,7 @@
 import './globals.css';
 
 export const metadata = {
-  title: 'No3 Danışmanlık | Almanya Göçmenlik ve Kariyer Yol Haritası',
+  title: 'No3 Danışmanlık | Almanya Göç ve Kariyer Danışmanlığı',
   description: 'Almanya’ya gitmek isteyenler için net yol haritası. Evrak, iş ve yerleşim sürecini profesyonel bir sistemle birlikte yönetiyoruz.',
 };
 

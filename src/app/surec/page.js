@@ -3,7 +3,7 @@ import Process from '@/components/Process';
 import Footer from '@/components/Footer';
 
 export const metadata = {
-  title: 'Süreç | No3 Danışmanlık',
+  title: 'Almanya Süreci: 6 Ay Canlı Destek ve Yerel Ağ | No3 Danışmanlık',
   description: 'Almanya sürecinde vize sonrası yol arkadaşlığı, 6 ay canlı destek ve yerel ağ desteği.'
 };
 

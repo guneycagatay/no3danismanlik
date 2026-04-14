@@ -5,6 +5,11 @@ import { PACKAGE_CATALOG } from '@/lib/packageCatalog';
 
 const packageIds = Object.keys(PACKAGE_CATALOG);
 
+export const metadata = {
+  title: 'Danışmanlık Paketi Satın Al ve Randevu | No3 Danışmanlık',
+  description: 'Danışmanlık paketi seçin, iletişim ve randevu bilgilerinizi girin, ardından Shopier ile güvenli ödeme adımına geçin.'
+};
+
 export default function SatinAlPage({ searchParams }) {
   const packageId = searchParams?.paket;
   const selectedPackage = PACKAGE_CATALOG[packageId] || PACKAGE_CATALOG[packageIds[0]];

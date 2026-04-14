@@ -2,6 +2,11 @@ import Link from 'next/link';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
+export const metadata = {
+  title: 'Ödeme Adımı ve Sipariş Özeti | No3 Danışmanlık',
+  description: 'Seçtiğiniz danışmanlık hizmeti için sipariş özetinizi görüntüleyin ve ödeme adımını tamamlayın.'
+};
+
 export default function OdemePage({ searchParams }) {
   const product = searchParams?.urun || 'test-sonucu-raporu';
   const score = searchParams?.puan;

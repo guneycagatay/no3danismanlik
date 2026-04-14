@@ -1,7 +1,12 @@
 import Navbar from '@/components/Navbar';
 import FAQ from '@/components/FAQ';
 import Footer from '@/components/Footer';
-import ContactFormCard from '@/components/ContactFormCard';
+import LeadForm from '@/components/LeadForm';
+
+export const metadata = {
+  title: 'İletişim ve Randevu | No3 Danışmanlık',
+  description: 'No3 Danışmanlık iletişim formu ile randevu alın, Almanya süreciniz için hızlı geri dönüş ve birebir destek alın.'
+};
 
 export default function IletisimPage() {
   return (
@@ -9,17 +14,17 @@ export default function IletisimPage() {
       <Navbar />
       <main className="page-main-tight">
         <section>
-          <div className="container" style={{ display: 'grid', gridTemplateColumns: '1.1fr 0.9fr', gap: '28px' }}>
+          <div className="container" style={{ display: 'grid', gridTemplateColumns: '1.2fr 0.8fr', gap: '40px', alignItems: 'start' }}>
             <div>
               <span className="eyebrow">İletişim</span>
               <h1 style={{ fontSize: 'clamp(40px, 5vw, 66px)', letterSpacing: '-0.05em', lineHeight: '1.02', marginBottom: '16px' }}>
                 Sizinle Hemen İletişime Geçelim
               </h1>
-              <p style={{ fontSize: '18px', color: 'var(--muted)', marginBottom: '24px' }}>
+              <p style={{ fontSize: '18px', color: 'var(--muted)', marginBottom: '32px' }}>
                 Almanya süreciniz için kısa bir ön görüşme planlayalım. Formu doldurun, ekibimiz size hızlıca dönüş yapsın.
               </p>
 
-              <ContactFormCard />
+              <LeadForm maxWidth="100%" />
             </div>
             
             <aside>

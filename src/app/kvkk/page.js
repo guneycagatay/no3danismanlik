@@ -2,7 +2,7 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 
 export const metadata = {
-  title: 'KVKK Aydınlatma Metni | No3 Danışmanlık',
+  title: 'KVKK Aydınlatma Metni ve Veri İşleme | No3 Danışmanlık',
   description: 'No3 Danışmanlık KVKK aydınlatma metni.'
 };
 

@@ -1,0 +1,195 @@
+.formContainer {
+    width: 100%;
+    max-width: var(--form-max-width, 540px);
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    border-radius: 18px;
+    padding: 40px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.04);
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    margin: 0 auto;
+}
+
+.progressContainer {
+    margin-bottom: 32px;
+}
+
+.progressHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #86868B;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.progressBar {
+    height: 4px;
+    background: #E5E5EA;
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.progressFill {
+    height: 100%;
+    background: linear-gradient(135deg, #007AFF 0%, #5856D6 100%);
+    transition: width 0.6s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.title {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    letter-spacing: -0.5px;
+    color: #1D1D1F;
+}
+
+.subtitle {
+    color: #86868B;
+    font-size: 16px;
+    margin-bottom: 32px;
+    line-height: 1.5;
+}
+
+.step {
+    animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.formGroup {
+    margin-bottom: 24px;
+}
+
+.label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    margin-left: 4px;
+    color: #1D1D1F;
+}
+
+.input, .select, .textarea {
+    width: 100%;
+    padding: 14px 18px;
+    font-size: 16px;
+    border-radius: 14px;
+    border: 1px solid #D2D2D7;
+    background: #FFFFFF;
+    font-family: inherit;
+    transition: all 0.2s ease;
+    outline: none;
+    color: #1D1D1F;
+}
+
+.input:focus, .select:focus, .textarea:focus {
+    border-color: #007AFF;
+    box-shadow: 0 0 0 4px rgba(0, 122, 255, 0.1);
+}
+
+.optionsGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.optionCard {
+    position: relative;
+    background: #FFFFFF;
+    border: 1px solid #D2D2D7;
+    padding: 14px;
+    border-radius: 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 500;
+    color: #1D1D1F;
+}
+
+.optionCard:hover {
+    border-color: #007AFF;
+    background: rgba(0, 122, 255, 0.05);
+}
+
+.optionCardSelected {
+    background: #007AFF;
+    color: white;
+    border-color: #007AFF;
+}
+
+.actions {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.btn {
+    padding: 16px 24px;
+    font-size: 17px;
+    font-weight: 600;
+    border-radius: 14px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.25, 0.1, 0.25, 1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+}
+
+.btnPrimary {
+    background: linear-gradient(135deg, #007AFF 0%, #5856D6 100%);
+    color: white;
+    box-shadow: 0 10px 20px rgba(0, 122, 255, 0.15);
+}
+
+.btnPrimary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 30px rgba(0, 122, 255, 0.25);
+}
+
+.btnSecondary {
+    background: transparent;
+    color: #86868B;
+}
+
+.successState {
+    text-align: center;
+    padding: 20px 0;
+}
+
+.successIcon {
+    width: 72px;
+    height: 72px;
+    background: #34C759;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 24px;
+    animation: scaleUp 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes scaleUp {
+    from { transform: scale(0.5); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+@media (max-width: 480px) {
+    .formContainer { padding: 30px 20px; }
+    .optionsGrid { grid-template-columns: 1fr; }
+    .title { font-size: 24px; }
+}
