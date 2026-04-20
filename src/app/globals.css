@@ -1,0 +1,73 @@
+@import "tailwindcss";
+
+:root {
+  --bg0: #060606;
+  --panel: rgba(255, 255, 255, .06);
+  --border: rgba(255, 255, 255, .10);
+
+  /* Dark gold */
+  --gold: #c6a15b;
+  --gold2: #9a7b3f;
+  --gold3: #e2c27a;
+
+  --text: rgba(255, 255, 255, .92);
+  --muted: rgba(255, 255, 255, .68);
+}
+
+@theme {
+  --font-sans: "Inter", system-ui, sans-serif;
+  --color-gold: var(--gold);
+  --color-gold-light: var(--gold3);
+  --color-gold-dark: var(--gold2);
+}
+
+body {
+  background: var(--bg0);
+  color: var(--text);
+  scroll-behavior: smooth;
+}
+
+.aurora {
+  background:
+    radial-gradient(900px 520px at 10% 10%, rgba(198, 161, 91, .18), transparent 60%),
+    radial-gradient(900px 520px at 85% 20%, rgba(154, 123, 63, .16), transparent 60%),
+    radial-gradient(900px 520px at 55% 95%, rgba(226, 194, 122, .10), transparent 60%),
+    linear-gradient(135deg, #050505 0%, #0b0b0b 50%, #050505 100%);
+}
+
+.glass {
+  background: linear-gradient(135deg, rgba(255, 255, 255, .08), rgba(255, 255, 255, .03));
+  border: 1px solid var(--border);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.stroke-effect {
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, .06) inset,
+    0 18px 60px rgba(0, 0, 0, .55);
+}
+
+.grad-btn {
+  background: linear-gradient(90deg, var(--gold2) 0%, var(--gold) 50%, var(--gold3) 100%);
+  color: #0a0a0a;
+}
+
+.grad-chip {
+  background: linear-gradient(90deg, rgba(198, 161, 91, .16), rgba(154, 123, 63, .14), rgba(226, 194, 122, .12));
+  border: 1px solid rgba(198, 161, 91, .22);
+}
+
+.divider {
+  background: linear-gradient(90deg, transparent, rgba(198, 161, 91, .22), transparent);
+  height: 1px;
+}
+
+.topbar {
+  background: linear-gradient(180deg, rgba(8, 8, 8, .92), rgba(10, 10, 10, .78));
+  border-bottom: 1px solid rgba(198, 161, 91, .22);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+
