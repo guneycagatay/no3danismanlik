@@ -9,7 +9,7 @@ export async function POST(req: Request) {
         const transporter = nodemailer.createTransport({
             host: process.env.SMTP_HOST,
             port: Number(process.env.SMTP_PORT),
-            secure: true, // true for 465, false for other ports
+            secure: process.env.SMTP_SECURE === "true", // Use the variable from Vercel
             auth: {
                 user: process.env.SMTP_USER,
                 pass: process.env.SMTP_PASS,
@@ -48,7 +48,7 @@ export async function POST(req: Request) {
 
         await transporter.sendMail({
             from: `"No3 Web Form" <${process.env.SMTP_USER}>`,
-            to: process.env.ADMIN_EMAIL,
+            to: process.env.NOTIFY_TO_EMAIL, // Updated name from screenshot
             subject: `Yeni ${type === 'appointment' ? 'Randevu' : 'Uygunluk Testi'}: ${data.name || 'Bilinmeyen Kullanıcı'}`,
             html: emailHtml,
         });
