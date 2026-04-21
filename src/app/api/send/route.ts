@@ -9,15 +9,20 @@ export async function POST(req: Request) {
         const transporter = nodemailer.createTransport({
             host: process.env.SMTP_HOST,
             port: Number(process.env.SMTP_PORT),
-            secure: process.env.SMTP_SECURE === "true",
+            secure: process.env.SMTP_SECURE === "true", // 465 için true, 587 için false
             auth: {
                 user: process.env.SMTP_USER,
                 pass: process.env.SMTP_PASS,
             },
-            connectionTimeout: 5000, // 5 saniye içinde bağlanamazsa hata versin
+            connectionTimeout: 10000, // Zaman aşımını biraz daha artırdım (10sn)
+            greetingTimeout: 10000,
+            socketTimeout: 10000,
             tls: {
-                rejectUnauthorized: false // Sertifika hatalarını görmezden gel (Paylaşımlı hostinglerde hayat kurtarır)
-            }
+                rejectUnauthorized: false, // Sertifika hatalarını es geç
+                minVersion: 'TLSv1.2'
+            },
+            debug: true, // Vercel loglarında daha fazla detay görmek için
+            logger: true
         });
 
         // Construct HTML Table for data
