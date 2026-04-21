@@ -105,12 +105,15 @@ export default function AppointmentFunnel({ onSuccess }: AppointmentFunnelProps)
                             return (
                                 <button
                                     key={day} disabled={isDisabled} onClick={() => handleDateSelect(day)}
-                                    className={`aspect-square rounded-xl flex items-center justify-center text-sm font-bold transition-all
+                                    className={`aspect-square rounded-xl flex flex-col items-center justify-center text-sm font-bold transition-all
                                         ${isDisabled ? 'text-white/10 cursor-not-allowed' : 'hover:bg-gold/20 hover:text-white text-white/80'}
                                         ${selectedDate === day ? 'bg-gold !text-black shadow-lg shadow-gold/20' : ''}
                                     `}
                                 >
-                                    {day}
+                                    <span className={isDisabled && !isPast ? 'mt-1' : ''}>{day}</span>
+                                    {isDisabled && !isPast && (
+                                        <span className="text-[7px] font-black opacity-40 leading-none mt-0.5">DOLU</span>
+                                    )}
                                 </button>
                             );
                         })}
