@@ -11,10 +11,12 @@ export default function Navbar() {
             <div className="topbar stroke-effect">
                 <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                     <div className="flex h-16 items-center justify-between">
-                        <Link href="#top" className="flex items-center gap-3">
-                            <div className="text-xl font-black tracking-tighter text-white">
-                                NO<span className="text-gold-light">3</span> DANIŞMANLIK
-                            </div>
+                        <Link href="#top" className="flex items-center py-2">
+                            <img 
+                                src="/img/logo.png" 
+                                alt="No3 Danışmanlık" 
+                                className="h-10 sm:h-12 w-auto object-contain brightness-110" 
+                            />
                         </Link>
 
                         <nav className="hidden md:flex items-center gap-6 text-sm text-white/70">
