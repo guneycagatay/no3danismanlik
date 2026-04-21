@@ -6,23 +6,21 @@ export async function POST(req: Request) {
         const body = await req.json();
         const { type, data } = body;
 
+        const smtpPort = Number(process.env.SMTP_PORT);
         const transporter = nodemailer.createTransport({
             host: process.env.SMTP_HOST,
-            port: Number(process.env.SMTP_PORT),
-            secure: process.env.SMTP_SECURE === "true", // 465 için true, 587 için false
+            port: smtpPort,
+            secure: smtpPort === 465, // 465 ise otomatik true, değilse false
             auth: {
                 user: process.env.SMTP_USER,
                 pass: process.env.SMTP_PASS,
             },
-            connectionTimeout: 10000, // Zaman aşımını biraz daha artırdım (10sn)
-            greetingTimeout: 10000,
-            socketTimeout: 10000,
+            connectionTimeout: 15000, 
+            greetingTimeout: 15000,
             tls: {
-                rejectUnauthorized: false, // Sertifika hatalarını es geç
+                rejectUnauthorized: false,
                 minVersion: 'TLSv1.2'
-            },
-            debug: true, // Vercel loglarında daha fazla detay görmek için
-            logger: true
+            }
         });
 
         // Construct HTML Table for data
