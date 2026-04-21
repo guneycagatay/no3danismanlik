@@ -39,10 +39,10 @@ export default function WhySystem() {
 
                 <div className="relative">
                     <div className="absolute -inset-10 blur-3xl opacity-20 bg-gold/30 rounded-full"></div>
-                    <div className="relative glass stroke-effect rounded-[3rem] p-8 sm:p-12 text-center aspect-square flex flex-col items-center justify-center overflow-hidden group">
+                    <div className="relative glass stroke-effect rounded-[3rem] py-20 px-8 sm:p-12 text-center sm:aspect-square flex flex-col items-center justify-center overflow-hidden group">
                         <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-gold/5 to-transparent"></div>
-                        <div className="text-8xl sm:text-9xl font-black text-gold/20 mb-4 select-none">NO3</div>
-                        <h3 className="text-2xl sm:text-4xl font-black text-white mb-6 relative tracking-tight">Sistemin Gücü</h3>
+                        <div className="text-7xl sm:text-9xl font-black text-gold/20 mb-4 select-none">NO3</div>
+                        <h3 className="text-3xl sm:text-4xl font-black text-white mb-6 relative tracking-tight">Sistemin Gücü</h3>
                         <p className="text-base sm:text-lg text-white/70 max-w-md relative leading-relaxed">
                             Karmaşık bürokrasi ve belirsizlikleri ortadan kaldırarak, 
                             Almanya kariyer yolculuğunuzu tek bir sistem üzerinden 

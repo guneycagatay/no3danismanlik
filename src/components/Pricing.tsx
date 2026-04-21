@@ -14,11 +14,11 @@ export default function Pricing({ onOpenForm }: PricingProps) {
                 </div>
                 <h2 className="text-3xl sm:text-5xl font-black tracking-tight mb-8">Sana Uygun Paketi Seç</h2>
                 
-                <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
-                    <div className="glass border-rose-500/10 p-5 rounded-2xl text-rose-400/80 text-base font-medium italic whitespace-nowrap">
+                <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto px-4">
+                    <div className="glass border-rose-500/10 p-6 rounded-2xl text-rose-400/80 text-base font-medium italic">
                         "Kendi başına denersen aylar sürebilir."
                     </div>
-                    <div className="glass border-gold/20 p-5 rounded-2xl text-gold-light text-base font-bold whitespace-nowrap">
+                    <div className="glass border-gold/20 p-6 rounded-2xl text-gold-light text-base font-bold">
                         "Doğru sistemle başlarsan süreci hızlandırırsın."
                     </div>
                 </div>
