@@ -98,11 +98,15 @@ export default function AppointmentFunnel({ onSuccess }: AppointmentFunnelProps)
                         {Array.from({ length: daysInMonth }).map((_, i) => {
                             const day = i + 1;
                             const isPast = day < today.getDate();
+                            const dateObj = new Date(today.getFullYear(), today.getMonth(), day);
+                            const dayOfWeek = dateObj.getDay(); // 0: Sun, 1: Mon, 2: Tue, 3: Wed, 4: Thu, 5: Fri, 6: Sat
+                            const isAllowed = dayOfWeek === 2 || dayOfWeek === 6;
+                            const isDisabled = isPast || !isAllowed;
                             return (
                                 <button
-                                    key={day} disabled={isPast} onClick={() => handleDateSelect(day)}
+                                    key={day} disabled={isDisabled} onClick={() => handleDateSelect(day)}
                                     className={`aspect-square rounded-xl flex items-center justify-center text-sm font-bold transition-all
-                                        ${isPast ? 'text-white/10 cursor-not-allowed' : 'hover:bg-gold/20 hover:text-white text-white/80'}
+                                        ${isDisabled ? 'text-white/10 cursor-not-allowed' : 'hover:bg-gold/20 hover:text-white text-white/80'}
                                         ${selectedDate === day ? 'bg-gold !text-black shadow-lg shadow-gold/20' : ''}
                                     `}
                                 >
