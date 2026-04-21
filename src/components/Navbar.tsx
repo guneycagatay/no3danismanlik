@@ -11,11 +11,11 @@ export default function Navbar() {
             <div className="topbar stroke-effect">
                 <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                     <div className="flex h-16 items-center justify-between">
-                        <Link href="#top" className="flex items-center py-2">
+                        <Link href="#top" className="flex items-center py-2 translate-y-[-2px]">
                             <img 
                                 src="/img/logo.png" 
                                 alt="No3 Danışmanlık" 
-                                className="h-10 sm:h-12 w-auto object-contain brightness-110" 
+                                className="h-12 sm:h-16 w-auto object-contain brightness-110" 
                             />
                         </Link>
 
