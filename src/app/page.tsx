@@ -81,7 +81,7 @@ export default function Home() {
                                         Ücretsiz Ön Randevu Oluştur
                                     </h2>
                                     <p className="text-white/60 text-lg leading-relaxed">
-                                        Almanya'da iş bulma süreci, vize işlemleri ve danışmanlık talepleriniz için formu doldurun. 
+                                        Almanya&apos;da iş bulma süreci, vize işlemleri ve danışmanlık talepleriniz için formu doldurun. 
                                         Uzman ekibimiz size en kısa sürede dönüş yapacaktır.
                                     </p>
                                 </div>

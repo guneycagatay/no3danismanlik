@@ -26,6 +26,8 @@ export default function EligibilityModal({ isOpen, onClose, onOpenAppointment }:
         notes: ""
     });
 
+    const [isSubmitting, setIsSubmitting] = useState(false);
+
     if (!isOpen) return null;
 
     const handleNext = () => setStep(prev => prev + 1);
@@ -40,8 +42,6 @@ export default function EligibilityModal({ isOpen, onClose, onOpenAppointment }:
         if (formData.passport === "Var") score += 5;
         return Math.min(score, 100);
     };
-
-    const [isSubmitting, setIsSubmitting] = useState(false);
 
     const handleFinalSubmit = async () => {
         setIsSubmitting(true);

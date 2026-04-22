@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Link from "next/link";
 
 export default function Navbar() {
@@ -39,7 +39,7 @@ export default function Navbar() {
                                 className="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-xl glass"
                             >
                                 <span className="sr-only">Menüyü aç</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-white/90" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-white/90" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                                     <path d="M4 6h16M4 12h16M4 18h16" />
                                 </svg>
                             </button>

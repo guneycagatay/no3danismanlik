@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 interface AppointmentFunnelProps {
     onSuccess: () => void;
@@ -12,13 +12,22 @@ export default function AppointmentFunnel({ onSuccess }: AppointmentFunnelProps)
     const [selectedTime, setSelectedTime] = useState<string | null>(null);
     const [formData, setFormData] = useState({ name: "", email: "", phone: "", notes: "" });
 
+    const [mounted, setMounted] = useState(false);
+    useEffect(() => {
+        setMounted(true);
+    }, []);
+
     // Calendar Data
     const today = new Date();
     const daysInMonth = new Date(today.getFullYear(), today.getMonth() + 1, 0).getDate();
     const firstDayIndex = new Date(today.getFullYear(), today.getMonth(), 1).getDay();
-    const monthName = today.toLocaleString('default', { month: 'long' });
+    const monthName = today.toLocaleString('tr-TR', { month: 'long' }); // Force TR locale for consistency
 
     const timeSlots = ["09:00", "09:30", "10:00", "10:30", "11:00", "11:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00", "17:30"];
+
+    const [isSubmitting, setIsSubmitting] = useState(false);
+
+    if (!mounted) return <div className="min-h-[300px] flex items-center justify-center text-white/20">Yükleniyor...</div>;
 
     const handleDateSelect = (day: number) => {
         setSelectedDate(day);
@@ -29,8 +38,6 @@ export default function AppointmentFunnel({ onSuccess }: AppointmentFunnelProps)
         setSelectedTime(time);
         setStep("info");
     };
-
-    const [isSubmitting, setIsSubmitting] = useState(false);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
