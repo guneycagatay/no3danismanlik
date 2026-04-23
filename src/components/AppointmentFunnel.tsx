@@ -107,7 +107,7 @@ export default function AppointmentFunnel({ onSuccess }: AppointmentFunnelProps)
                             const isPast = day < today.getDate();
                             const dateObj = new Date(today.getFullYear(), today.getMonth(), day);
                             const dayOfWeek = dateObj.getDay(); // 0: Sun, 1: Mon, 2: Tue, 3: Wed, 4: Thu, 5: Fri, 6: Sat
-                            const isAllowed = dayOfWeek === 2 || dayOfWeek === 6;
+                            const isAllowed = dayOfWeek === 1 || dayOfWeek === 3 || dayOfWeek === 6;
                             const isDisabled = isPast || !isAllowed;
                             return (
                                 <button
